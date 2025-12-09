@@ -1,0 +1,1 @@
+Full sammanfattning av Angular PWA boilerplate.
