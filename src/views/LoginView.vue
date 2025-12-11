@@ -1,34 +1,41 @@
 <template>
-  <v-container class="fill-height">
-    <v-row justify="center" align="center">
-      <v-col cols="12" sm="8" md="6" lg="4">
-        <v-card class="elevation-12">
-          <v-toolbar color="primary" dark flat>
-            <v-toolbar-title>Login</v-toolbar-title>
-          </v-toolbar>
-          <v-card-text>
-            <div class="text-center my-4">Please sign in to continue</div>
+  <div class="d-flex flex-column fill-height">
+    <v-card color="primary" variant="tonal" class="text-center py-6 rounded-0" flat>
+      <v-card-title class="text-h4">Welcome to Vuetify</v-card-title>
+      <v-card-subtitle>A Material Design Framework for Vue 3</v-card-subtitle>
+    </v-card>
 
-            <v-btn
-              variant="outlined"
-              color="red"
-              block
-              prepend-icon="mdi-google"
-              :loading="loading"
-              @click="handleGoogleLogin"
-              size="large"
-            >
-              Sign in with Google
-            </v-btn>
+    <v-container class="flex-grow-1 d-flex align-center justify-center">
+      <v-row justify="center">
+        <v-col cols="12" sm="8" md="6" lg="4">
+          <v-card class="elevation-12">
+            <v-toolbar color="primary" dark flat>
+              <v-toolbar-title>Login</v-toolbar-title>
+            </v-toolbar>
+            <v-card-text>
+              <div class="text-center my-4">Please sign in to continue</div>
 
-            <v-alert v-if="error" type="error" dense class="mt-4">
-              {{ error }}
-            </v-alert>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+              <v-btn
+                variant="outlined"
+                color="red"
+                block
+                prepend-icon="mdi-google"
+                :loading="loading"
+                @click="handleGoogleLogin"
+                size="large"
+              >
+                Sign in with Google
+              </v-btn>
+
+              <v-alert v-if="error" type="error" dense class="mt-4">
+                {{ error }}
+              </v-alert>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script setup lang="ts">

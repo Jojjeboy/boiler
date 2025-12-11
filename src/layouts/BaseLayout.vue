@@ -51,8 +51,7 @@ const handleLogout = async () => {
       <v-app-bar-title>Application</v-app-bar-title>
       <v-spacer></v-spacer>
 
-      <v-btn v-if="!authStore.user" to="/login" variant="text">Login</v-btn>
-      <v-btn v-else @click="handleLogout" variant="text">Logout</v-btn>
+      <v-btn v-if="authStore.user" @click="handleLogout" variant="text">Logout</v-btn>
     </v-app-bar>
 
     <v-main>
