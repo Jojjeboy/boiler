@@ -1,7 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
 
 const drawer = ref<boolean | null>(null) // null for auto-behavior (open on desktop, closed on mobile)
+
+const authStore = useAuthStore()
+const router = useRouter()
+
+const handleLogout = async () => {
+  await authStore.logout()
+  router.push('/login')
+}
 </script>
 
 <template>
@@ -39,12 +49,14 @@ const drawer = ref<boolean | null>(null) // null for auto-behavior (open on desk
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-app-bar-title>Application</v-app-bar-title>
+      <v-spacer></v-spacer>
+
+      <v-btn v-if="!authStore.user" to="/login" variant="text">Login</v-btn>
+      <v-btn v-else @click="handleLogout" variant="text">Logout</v-btn>
     </v-app-bar>
 
     <v-main>
-      <v-container fluid class="fill-height align-start">
-        <slot></slot>
-      </v-container>
+      <slot></slot>
     </v-main>
 
     <v-footer app border>

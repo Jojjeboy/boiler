@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,12 +13,35 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue'),
+    },
   ],
+})
+
+// Navigation Guard
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore()
+
+  // Wait for auth to init if not already
+  if (authStore.loading) {
+    await authStore.initAuth()
+  }
+
+  const isPublic = to.name === 'login'
+  const isAuthenticated = !!authStore.user
+
+  if (!isPublic && !isAuthenticated) {
+    next('/login')
+  } else if (isPublic && isAuthenticated) {
+    next('/') // Redirect to home if already logged in and trying to access login
+  } else {
+    next()
+  }
 })
 
 export default router
