@@ -1,15 +1,14 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <v-container>
+    <div class="about">
+      <h1 class="text-h3 mb-4">About Page</h1>
+      <p class="text-body-1">
+        This page is lazy-loaded and styled with Vuetify typography classes.
+      </p>
+    </div>
+  </v-container>
 </template>
 
 <style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
+/* No scoped styles needed with Vuetify utility classes */
 </style>
