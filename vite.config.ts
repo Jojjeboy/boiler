@@ -12,6 +12,7 @@ export default defineConfig({
     vueDevTools(),
     vuetify({ autoImport: true }),
   ],
+  base: '/boiler/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
