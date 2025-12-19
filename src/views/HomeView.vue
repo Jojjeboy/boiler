@@ -1,34 +1,31 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
+
+const authStore = useAuthStore()
+const router = useRouter()
+
+const handleLogout = async () => {
+  try {
+    await authStore.logout()
+    router.push('/login')
+  } catch (error) {
+    console.error('Logout failed:', error)
+  }
+}
+</script>
 
 <template>
-  <div>
-    <v-row class="mb-4">
-      <v-col cols="12">
-        <v-card color="primary" variant="tonal" class="text-center py-6">
-          <v-card-title class="text-h4">Welcome to Vuetify</v-card-title>
-          <v-card-subtitle>A Material Design Framework for Vue 3</v-card-subtitle>
-        </v-card>
-      </v-col>
-    </v-row>
+  <main class="center-content">
+    <div class="glass-container">
+      <h1>Welcome Home</h1>
+      <p>
+        You are authenticated as:
+        <br />
+        <strong>{{ authStore.user?.email }}</strong>
+      </p>
 
-    <v-row>
-      <v-col cols="12" md="4" v-for="n in 3" :key="n">
-        <v-card hover>
-          <v-card-item>
-            <v-card-title>Feature {{ n }}</v-card-title>
-            <v-card-subtitle>Amazing capability</v-card-subtitle>
-          </v-card-item>
-
-          <v-card-text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-            incididunt ut labore et dolore.
-          </v-card-text>
-
-          <v-card-actions>
-            <v-btn variant="text" color="primary">Details</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
-  </div>
+      <button @click="handleLogout" class="btn btn-secondary">Logout</button>
+    </div>
+  </main>
 </template>

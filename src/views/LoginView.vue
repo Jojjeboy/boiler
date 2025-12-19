@@ -1,68 +1,37 @@
-<template>
-  <div class="d-flex flex-column fill-height">
-    <v-card color="primary" variant="tonal" class="text-center py-6 rounded-0" flat>
-      <v-card-title class="text-h4">Welcome to Vuetify</v-card-title>
-      <v-card-subtitle>A Material Design Framework for Vue 3</v-card-subtitle>
-    </v-card>
-
-    <v-container class="flex-grow-1 d-flex align-center justify-center">
-      <v-row justify="center">
-        <v-col cols="12" sm="8" md="6" lg="4">
-          <v-card class="elevation-12">
-            <v-toolbar color="primary" dark flat>
-              <v-toolbar-title>Login</v-toolbar-title>
-            </v-toolbar>
-            <v-card-text>
-              <div class="text-center my-4">Please sign in to continue</div>
-
-              <v-btn
-                variant="outlined"
-                color="red"
-                block
-                prepend-icon="mdi-google"
-                :loading="loading"
-                @click="handleGoogleLogin"
-                size="large"
-              >
-                Sign in with Google
-              </v-btn>
-
-              <v-alert v-if="error" type="error" dense class="mt-4">
-                {{ error }}
-              </v-alert>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
-</template>
-
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
 
-const error = ref('')
-const loading = ref(false)
-
-const router = useRouter()
 const authStore = useAuthStore()
+const router = useRouter()
 
-const handleGoogleLogin = async () => {
-  error.value = ''
-  loading.value = true
+const handleLogin = async () => {
   try {
     await authStore.loginWithGoogle()
     router.push('/')
-  } catch (e: unknown) {
-    if (e instanceof Error) {
-      error.value = e.message
-    } else {
-      error.value = 'Failed to login with Google'
-    }
-  } finally {
-    loading.value = false
+  } catch (error) {
+    console.error('Login failed:', error)
   }
 }
 </script>
+
+<template>
+  <main class="center-content">
+    <div class="glass-container">
+      <h1>Boilerplate App</h1>
+      <p>
+        This is a minimal boilerplate application using Vue 3 and Firebase Authentication. It
+        contains no complex UI frameworks, just clean CSS and functional structure.
+      </p>
+
+      <ul>
+        <li><strong>Vue 3</strong> (Composition API)</li>
+        <li><strong>Vite</strong> (Build Tool)</li>
+        <li><strong>Pinia</strong> (State Management)</li>
+        <li><strong>Firebase</strong> (Auth & Hosting)</li>
+      </ul>
+
+      <button @click="handleLogin" class="btn btn-primary">Sign in with Google</button>
+    </div>
+  </main>
+</template>
