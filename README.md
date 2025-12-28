@@ -52,3 +52,16 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+<br />
+<br />
+
+
+### Add a .env file with this content
+```sh
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+```
