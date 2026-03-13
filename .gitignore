@@ -36,6 +36,7 @@ coverage
 __screenshots__/
 
 # local helper for env generation
-/scripts/pasted_secret_config.js
+scripts/pasted_secret_config.js
 
 .env
+scripts/pasted_secret_config.js
