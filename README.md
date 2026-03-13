@@ -29,6 +29,19 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 npm install
 ```
 
+## Quick Start
+
+1. **Set up your Firebase configuration:**
+   - Copy the `firebaseConfig` object from your Firebase console.
+   - Paste it into `scripts/pasted_secret_config.js`.
+   - Run `npm run generate-env` to create/update your `.env` file.
+
+2. **Start the development server:**
+   ```sh
+   npm run dev
+   ```
+
+@todo: implement next step https://medium.com/@guilhermehenrique_23468/streamlining-github-secrets-management-with-a-bash-script-8b757a047e0e
 ### Compile and Hot-Reload for Development
 
 ```sh
