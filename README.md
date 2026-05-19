@@ -118,3 +118,10 @@ VITE_FIREBASE_STORAGE_BUCKET=.firebasestorage.app
 VITE_FIREBASE_MESSAGING_SENDER_ID=
 VITE_FIREBASE_APP_ID=
 ```
+
+
+### Rename app
+
+```sh
+npm run rename -- "My Cool App"
+```
